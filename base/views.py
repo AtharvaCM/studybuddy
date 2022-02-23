@@ -94,10 +94,10 @@ def home(request):
 
     template_name = 'base/home.html'
     context = {
-        'rooms': rooms,
+        'rooms': rooms[:6],
         'topics': topics,
         'room_count': room_count,
-        'room_messages': room_messages,
+        'room_messages': room_messages[:7],
     }
 
     return render(request, template_name, context)
@@ -124,11 +124,7 @@ def room(request, pk):
             message.save()
         else:
             print('Form is invalid')
-        # Message.objects.create(
-        #     user=request.user,
-        #     room=room,
-        #     body=request.POST.get('body')
-        # )
+
         room.participants.add(request.user)
         return redirect('room', pk=room.id)
 
