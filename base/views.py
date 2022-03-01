@@ -268,6 +268,6 @@ def activityPage(request):
     room_messages = Message.objects.all()
 
     template_name = 'base/activity.html'
-    context = {'room_messages': room_messages}
+    context = {'room_messages': room_messages[:4]}
 
     return render(request, template_name, context)
